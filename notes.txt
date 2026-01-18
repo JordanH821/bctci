@@ -1,0 +1,14 @@
+Syntax Issues
+- lambda functions
+- enumerate provides index, value
+
+
+Character Conversions
+- ord(c): char to numeric code
+- chr(i): numeric code to char
+
+Strings
+- Immutable in Python, JavaScript, and Java
+	- Use list of characters in Python to avoid unnecessary string copies, then combine with join()
+- Mutable in C++
+
