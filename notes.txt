@@ -12,3 +12,6 @@ Strings
 	- Use list of characters in Python to avoid unnecessary string copies, then combine with join()
 - Mutable in C++
 
+Binary Search
+- Check that initial L and R assumptions hold
+	- Basically check L and R 
