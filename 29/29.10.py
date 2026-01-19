@@ -2,10 +2,8 @@ def solution(capacity: int, scoop: int) -> int:
 	l: int = 1
 	r: int = 1
 	# Find max for r
-	while r * scoop < capacity:
+	while r * scoop <= capacity:
 		r *= 2
-	if r * scoop == capacity:
-		return r
 	while r - l > 1:
 		mid = (l+r) >> 1
 		if mid * scoop <= capacity:
