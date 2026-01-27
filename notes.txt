@@ -2,7 +2,6 @@ Syntax Issues
 - lambda functions
 - enumerate provides index, value
 
-
 Character Conversions
 - ord(c): char to numeric code
 - chr(i): numeric code to char
@@ -15,3 +14,6 @@ Strings
 Binary Search
 - Check that initial L and R assumptions hold
 	- Basically check L and R 
+
+Indexing
+- Dividing two ints with `/` will result in a float - either use `//` or cast to int
