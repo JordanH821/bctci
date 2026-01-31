@@ -2,7 +2,6 @@ Syntax Issues
 - lambda functions
 - enumerate provides index, value
 
-
 Character Conversions
 - ord(c): char to numeric code
 - chr(i): numeric code to char
@@ -18,3 +17,6 @@ Binary Search
 
 Nesting List Creation
 - Be careful of creating pointers to the same list multiple times, see 28.2
+
+Indexing
+- Dividing two ints with `/` will result in a float - either use `//` or cast to int
