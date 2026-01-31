@@ -15,3 +15,6 @@ Strings
 Binary Search
 - Check that initial L and R assumptions hold
 	- Basically check L and R 
+
+Nesting List Creation
+- Be careful of creating pointers to the same list multiple times, see 28.2
