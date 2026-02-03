@@ -20,3 +20,33 @@ Nesting List Creation
 
 Indexing
 - Dividing two ints with `/` will result in a float - either use `//` or cast to int
+
+Sorting
+- Builtin sorting
+	- methods:
+		- <Object>.sort() sorts "in place"
+		- <Object>.sorted() returns a new sorted list
+	- Comparators are deprecated in Python3, use a key function
+	- Reverse flag flips the sorting
+		- Default is increasing order:
+			>>> l = [1,2,3]
+			>>> l.sort()
+			>>> l
+			[1, 2, 3]
+			>>> l.sort(reverse=True)
+			>>> l
+			[3, 2, 1]
+			>>>
+	- Example:
+		>>> A = [(1,'Z'),(1, 'A'), (2, 'B')]
+		>>> A.sort()
+		>>> A
+		[(1, 'A'), (1, 'Z'), (2, 'B')] # NOTE: tuples ties are broken by next value
+		>>> A.sort(key= lambda t: (t[1], t[0]))
+		>>> A
+		[(1, 'A'), (2, 'B'), (1, 'Z')] # NOTE: multiple value sort
+		>>> A = [(1,'Z'),(1, 'A'), (2, 'B'), (3, 'A')]
+		>>> A.sort(key= lambda t: (t[1], t[0]))
+		>>> A
+		[(1, 'A'), (3, 'A'), (2, 'B'), (1, 'Z')] # NOTE: multiple value sort more obvious
+

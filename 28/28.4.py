@@ -19,6 +19,8 @@ def solution(grid: list[list[int]]):
                 break
     return min_distance
 
+# RUNTIME: O(R + C) where R is the number of rows and C is the number of columns
+# SPACE: O(1) no extra space
 
 def run_tests():
     tests = [
