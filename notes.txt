@@ -49,4 +49,9 @@ Sorting
 		>>> A.sort(key= lambda t: (t[1], t[0]))
 		>>> A
 		[(1, 'A'), (3, 'A'), (2, 'B'), (1, 'Z')] # NOTE: multiple value sort more obvious
+- Reusable Ideas
+	- Sort to track largest and smallest elements
+- Stable Sorting: Elements that are equal maintain their original ordering
 
+Tuples
+- Tuples are immutable
