@@ -60,4 +60,9 @@ Sorting
 		- Ex: counting sort, bucket sort, radix sort
 		- Think of dutch flag problem
 		- Counting sort: good for arrays that have a smaller input range, basically count all instances of each input and rewrite them in order in the output array
+- Reusable Ideas
+	- Sort to track largest and smallest elements
+- Stable Sorting: Elements that are equal maintain their original ordering
 
+Tuples
+- Tuples are immutable
