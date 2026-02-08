@@ -11,6 +11,10 @@ Strings
 	- Use list of characters in Python to avoid unnecessary string copies, then combine with join()
 - Mutable in C++
 
+Dynamic Arrays
+- Use `del array[start:stop]` to delete portions
+	- This does NOT create a new array with the slicing and is overloaded for the delete
+
 Binary Search
 - Check that initial L and R assumptions hold
 	- Basically check L and R 
@@ -55,3 +59,19 @@ Sorting
 
 Tuples
 - Tuples are immutable
+
+Stacks and Queues
+- Stacks are LIFO - last-in-first-out
+	- Use lists in Python since there is no stack class
+- Queues are FIFO - first-in-first-out
+	- Use collections.deque (double-ended queue) in Python
+		- popleft for front, pop for back
+		- appendleft for front, append for back
+- push, pop, peek, size are all constant time operations
+	- underlying dynamic array or linked list
+- Reuseable ideas:
+	- Piggybacking extra info: store extra fields with main information to help processing
+		- Example using counts in 32.2 compress array by k
+	- Reframe balanced parenthesis as plot heights: goes up with open, down with close and creates a 'valid mountain range outline' (height >= 0, ends at height == 0)
+
+
