@@ -53,6 +53,17 @@ Sorting
 		>>> A.sort(key= lambda t: (t[1], t[0]))
 		>>> A
 		[(1, 'A'), (3, 'A'), (2, 'B'), (1, 'Z')] # NOTE: multiple value sort more obvious
+- Types of sorting
+	- Comparison sorts: generic algorithms that can sort any data type
+		- Ex: quicksort, mergesort, heapsort
+		- Work by directly comparing elements with either builtin or custom comparators
+		- Runtime is O(n log n)
+			- Actually O(T * n log n), where T is the time it takes to compare elements
+				- T is O(l) for strings of length l, but constant for numbers
+	- Specialized sorts: algorithms that leverage the input range
+		- Ex: counting sort, bucket sort, radix sort
+		- Think of dutch flag problem
+		- Counting sort: good for arrays that have a smaller input range, basically count all instances of each input and rewrite them in order in the output array
 - Reusable Ideas
 	- Sort to track largest and smallest elements
 - Stable Sorting: Elements that are equal maintain their original ordering
