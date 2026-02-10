@@ -19,11 +19,32 @@ Binary Search
 - Check that initial L and R assumptions hold
 	- Basically check L and R 
 
-Nesting List Creation
+Nested List Creation
 - Be careful of creating pointers to the same list multiple times, see 28.2
 
 Indexing
 - Dividing two ints with `/` will result in a float - either use `//` or cast to int
+
+Sets and Maps:
+- Sets are a unique group of elements
+- Maps are a unique group of keys that point to some value
+- Keys for sets and maps must be immutable: *****CANNOT USE LISTS OR SETS*****
+- Operations are all O(1) given that the hashing is O(1)
+	- Hash operations for strings is O(c) where c is the number of characters
+- Linear Scan Tradeoff: using a set or map to get constant-time lookups rather than repeated linear scans over an array
+- Reusable Ideas:
+	- Frequency Maps: using a map of elements to counts
+		- Useful in duplicate detection, counting, most frequency element problems
+	- Leverage the input range: when the input range is small you can use it to create more efficient solutions, see pg. 349
+	- Impose a canonical order: defining an order of elements when using a list (as a tuple) as the key
+- Common bugs:
+	- Iteration order is not deterministic (in Python3.7+ it is the insertion order)
+	- Cannot update a set or map while updating through it
+	- Set and map keys cannot be modified
+		- Must use immutable data types
+	- Not all types are hashable
+		- To make a user-defined class hashable you will need to add __hash__() and __eq__() as instance methods
+	- Trying to use sets or maps for nearest-element searches
 
 Sorting
 - Builtin sorting
