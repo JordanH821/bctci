@@ -84,5 +84,60 @@ Stacks and Queues
 	- Piggybacking extra info: store extra fields with main information to help processing
 		- Example using counts in 32.2 compress array by k
 	- Reframe balanced parenthesis as plot heights: goes up with open, down with close and creates a 'valid mountain range outline' (height >= 0, ends at height == 0)
+- Recipe: Dangling Bracket Stack
+	stack = []
+	for c in input s
+		if c is an open bracket
+			add to stack
+		else if c is a closing bracket
+			check if stack not empty
+			try to match the top of the stack with the closing bracket
+		else
+			handle (or ignore) non-bracket elements
+	check that there are no remaining unmatched parentheses in the stack
 
-
+Recursion
+- Call Stack: the stack of return addresses that accumulate as a program runs and nested function calls are executed
+	- Instruction Pointer: a pointer to the currently executing instruction, when returning from a function this is set to the last return address pushed onto the call stack
+	- Stack Overflow: an error that occurs when the memory allocated to the call stack is entirely filled up with return addresses. This is a common error with recursion.
+- Call Tree: a tree representing every recusive call over the course of an algorithm execution
+- Common Mistakes (see details on pg. 296):
+	- 1. Forgotten or incorrect base cases
+	- 2. Not making progress
+	- 3. Making unnecessary copies
+	- 4. Merging recursive calls incorrectly (see reusable idea below)
+	- 5. Missing return
+- Reusable Idea: Pass indices, not copies
+	- Pass indices directly rather than slices or copies as these add to the overhead in both runtime and space complexities
+- Design Choices:
+	- Helper functions: useful when a different function signature than the given function signature is required
+	- Returning values directly or updating a variable: if the variable takes constant space return it directly, but variables that take more than constant space should be updated by reference or made visible (defined outside helper function)
+	- Eager vs lazy parameter validation: no clear preference, but lazy only has to be done once in the case of multiple recusive calls (see pg. 400)
+		- Eager: valid parameters before passing them recursively
+		- Lazy: valid parameters after the recursive call as the base case
+- Big O Analysis
+	- Memorize common recusive algorithm runtimes: mergesort, quicksort
+	- BAD Method:
+		- B: Branching Factor: the number of maximum branching facor of any node (how many children the nodes have)
+		- A: The upper bound on the amount of Additional work at any particular node
+		- D: Depth: the number of levels in the call tree
+		- We can bound the total amount of work done by the algorithm by O(b^d * A)
+		- Gives a valid upper bound BUT may not be tight
+			- Reasons:
+				- Not all leaves are at maximum depth
+				- Not all non-leaf nodes have the maximum branching factor
+				- Not all nodes do the same amount of additional work
+	- Space Analysis: the call stack counts as extra space in a recursive function
+		- The space complexity will be the max of O(max call depth) and O(additional space)
+- Recurrence Relations: a function defined in terms of itself with smaller inputs
+	- Ex: factorials, fibonnaci
+	- A method for figuring out recursive algorithms is to first define the recurrence relation
+- Reusabled Idea: Applying modulo at each step
+	- When questions specify to use modulo, you can apply this at each step rather than just at the very end for all math (add, sub, mult) besides division
+- Memoization(AKA caching): storing information to avoid recomputing the same value twice
+- Dive and Counquer
+	- recursive algorithm type where
+		- we divide the input into disjoint parts
+		- we solve each part recursively
+		- We combine the solution to each part into the final solution
+	- not very common besides mergesort and quicksort
