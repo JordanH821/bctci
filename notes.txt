@@ -1,6 +1,9 @@
 Syntax Issues
 - lambda functions
 - enumerate provides index, value
+- Use of `nonlocal`
+	- When you need to set a variable from inside a nested helper function, you can access it by "defining" it with `nonlocal <var>` and then assigning to it on another line
+	- Example in 35.1
 
 Character Conversions
 - ord(c): char to numeric code
@@ -173,3 +176,40 @@ Linked Lists
 	- Two types:
 		- Singly Linked Lists: a node only points to the next node
 		- Doubly Linked Lists: a node points to previous and next nodes
+- Efficiency
+	- More efficient to modify in some cases than standard dynamic arrays
+		- O(1) vs O(n)
+			- push_front()
+			- pop_Front()
+	- Less efficent than standard dynamic arrays
+		- index access: O(index) vs O(1)
+		- pop_back(): O(n) for SLL and O(1) for DLL and dynamic arrays
+- Reusabe techniques
+	- Dummy Nodes: using a dummy node at the head to simplify edge cases and null checks
+	- Linked List Reversal Breakdown: using the *breakdown the problem* booster
+		1. Find the bounds of the section that needs to be reversed
+		2. Break that section out of the list without losing the before and after parts of the list
+		3. Reverse the section (see 34.6)
+		4. Reattach the section
+- Slow and Fast pointers
+	- Cycle detection (Floyd's cycle detection algorithm)
+		- A cycle in a LL is when a node points to another node that has been seen before
+		- Advance the fast pointer more times than the slow pointer on each Iteration
+	- Other uses: find the center of a LL in one pass and similar problems
+- Triggers:
+	- We need O(1) access to beginning and end of a data structure while maintaining insertion order
+	- Data structure design questions
+
+Trees
+- Terminology:
+	- Trees consist of nodes, which have children that are other nodes branching out from it
+	- The root node is the one at the very top (growing down) and the only one without a parentheses
+	- A leaf is a node with no children
+	- The branching factor of a node is its number of children
+	- The depth, height, or level of a node is the number of ancestors it has; the root node has a depth of 0
+	- The depth or height of a tree is the maximum depth among all nodes plus one, or zero if there are no nodes
+- Depth first search (DFS): a traversal algorithm for trees where we go deep into the left subtree visiting everynode, then doing the same for the right subtree
+	- Types of DFS traversals:
+		- Preorder traversal: the root precedes the subtrees
+		- Inorder traversal: the root is in between the subtree
+		- Postorder traversal: the root in after the subtrees

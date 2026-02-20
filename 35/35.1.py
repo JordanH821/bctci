@@ -12,7 +12,7 @@ def solution(node: Node) -> int:
         left: int = helper(node.left, depth+1)
         right: int = helper(node.right, depth+1)
         if node.val != depth:
-           nonlocal chain_max
+           nonlocal chain_max #### <---- nonlocal usage
            chain_max = max(left, right, chain_max)
            return 0
         else:
