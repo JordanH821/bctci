@@ -88,6 +88,11 @@ Sorting
 - Reusable Ideas
 	- Sort to track largest and smallest elements
 - Stable Sorting: Elements that are equal maintain their original ordering
+- Algorithms to know:
+	- mergesort
+	- quicksort
+		- quickselect
+	- bucket sort
 
 Tuples
 - Tuples are immutable
@@ -162,3 +167,9 @@ Recursion
 		- we solve each part recursively
 		- We combine the solution to each part into the final solution
 	- not very common besides mergesort and quicksort
+
+Linked Lists
+- A linked list is a data structure containing an ordered sequence of nodes
+	- Two types:
+		- Singly Linked Lists: a node only points to the next node
+		- Doubly Linked Lists: a node points to previous and next nodes
