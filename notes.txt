@@ -208,8 +208,58 @@ Trees
 	- The branching factor of a node is its number of children
 	- The depth, height, or level of a node is the number of ancestors it has; the root node has a depth of 0
 	- The depth or height of a tree is the maximum depth among all nodes plus one, or zero if there are no nodes
-- Depth first search (DFS): a traversal algorithm for trees where we go deep into the left subtree visiting everynode, then doing the same for the right subtree
+- Depth-Frst Search (DFS): a traversal algorithm for trees where we go deep into the left subtree visiting everynode, then doing the same for the right subtree
 	- Types of DFS traversals:
 		- Preorder traversal: the root precedes the subtrees
 		- Inorder traversal: the root is in between the subtree
 		- Postorder traversal: the root in after the subtrees
+- Reusable Ideas:
+	- Finding the node in the path with the minimum depth (see 34.3)
+- Breadth-First Search(BFS): a traversal algorithm for trees that visits nodes level by level
+	- Recipe:
+		def node_depth_queue_recipe(root):
+			Q = queue()
+			Q.add(root)
+			while not Q.empty():
+				node, depth = q.pop()
+				if not node:
+					continue
+				# Do something with node
+				q.add((node.left, depth+1))
+				q.add((node.right, depth+1))
+- Big O Analysis(Runtime): tree algorithms are analyzed in terms n, the number of nodes, and h, the height of the tree
+	- Things to consider
+		1. Does it follow one path from top to bottom? In this case runtime is based on height, assuming a constant time amount of work per node, runtime would be O(h)
+		2. Does it visit each node once? IN this case, the runtime is based on the number of nodes. If we spend O(1) time on each node, the runtime will be O(n)
+		3. Something else? Generally speaking, we can analyze any tree algorithms as the product of two things: the number of node visited and the time spent at each node (not counting recursive work)
+	- Most problems can solved by visiting each node once and doing a constant amount of work per node. If your algorithms visits nodes more than once or twice consider it may not be optimal.
+- Big O Analysis (Space): space used by recursive tree algorithms comes from the height of size of the call stack
+	- O(n) for unbalanced trees
+	- O(h) for balanced trees
+- Balanced Trees: a binary tree is balanced if for every node the left and right subtrees contain roughly the same amount of nodes (O(log n) height)
+	- "Roughly" depends on the type of balanced tree
+	- Types of balanced trees
+		- Heaps are based on complete binary trees
+		- Tree-based sets and maps use self-balanced BSTs
+		- The union-find data structure is based on a set of n-ary trees with amortized height even less than O(log n)
+- Perfect Binary Tree: is a tree where every level has the maximum number of nodes
+	1. all the leaves are at the same depth
+	2. all the non-leaf nodes (AKA internal nodes) have two children
+- Complete Binary Trees: a tree where all levels except the last one have the maximum numbers of nodes
+	- The last level may not be full, but all the nodes are aligned to the left
+- Binary Search Trees (BSTs):
+	- a binary tree is a BST if for every node:
+		1. all the values on its left subtree are less than or equal to the node's value
+		2. all the values on its right subtree are greater than or equal to the node's value
+	- inorder traversals of a BST goes the the elements in order
+	- name comes the relation of trying to find a value in a BST to using binary search
+	- we can find any value in a *balanced* BST in O(log n) time
+	- Self-Balancing BSTs
+		- A self-balancing BST is a BST-based data structure that supports the following operations:
+			1. You can insert and remove elements in O(logn) time
+			2. You can search for a given value or its nearest value in O(logn) time
+		- Examples: Red-black tress, AVL trees
+			- The heights of these trees are at most O(logn)
+- TreeSets and TreeMaps
+	- Sets and maps based on trees
+	- Should be used when we need nearest-value search on dynamic data
