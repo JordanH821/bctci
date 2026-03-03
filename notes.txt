@@ -263,3 +263,93 @@ Trees
 - TreeSets and TreeMaps
 	- Sets and maps based on trees
 	- Should be used when we need nearest-value search on dynamic data
+
+Graphs
+- A data structure made of nodes (AKA vertices) and edges
+- Undirected Graph Terminology
+	- Adjacent / neighbor nodes are nodes that share an edge between them
+	- Nodes can be called endpoints of the edge they share
+	- There is a path between two nodes if it is possible to go from one to the other by moving along edges
+	- A cycle is a sequence of edges that start and end at the same node
+	- V is used for the number of veritces (nodes) and E for the number of edges
+	- The degree of a node is the number of neighbors it has. This can range from 0 to V-1
+	- A complete graph has the maximum number of edges
+	- Parallel edges are an edge from a node to itself and are usually not allowed
+	- A graph is connected if there is a path from every node to every other node
+	- A connected component is a maximal subset of nodes where every node can reach every other node
+- Directed Graph Terminology
+	- Edges have a direction that is shown with an arrow. The start of the edge is the source node and the arrow side node is the destination node. (a. b) and (b, a) would be different edges
+	- Nodes have incoming and outgoing edges
+	- Neighbors are the nodes that can be reach from a source node via outgoing edges
+	- The number of incoming edges is called the indegree and the number of outgoing is called the outdegree
+	- Paths and cycles must respect the edge directions
+- Weighted graphs have a value associated with each edge. while unweighted graphs do not
+- Adjacency List Representation: a representation of a graph that is a V lists of neighbors in an array
+	- This representation assumes vertices can be identified by indexes from 0 - V-1
+		- If this assumption is incorrect we can use a map from node identifier to neighbors. This introduces some overhead for hashing
+- Edge List Representation: a graph representation that includes a number of vertices and a list of edges. This representation is not effecient for many problems
+- Resuable Idea: Edge List to Adject List Recipe
+	def build_adjacency_list(V, edge_list):
+		graph = [[] for _ in range(V)]
+		for node1, node2 in edge_list:
+			graph[node1].append(node2)
+			if undirected:
+				graph[node2].append(node1)
+		return graph
+- Adjacency Matrix Representation: a graph representation using a VxV boolean matrix where an edge exists between nodes i and j if matrix[i][j] is True
+	- Takes O(V^2) space
+	- Better on space for dense graphs because it is less space to store n booleans than n-1 integers; worse for sparse graphs
+Big O Analysis (Adjacency List): graphs are analyzed in terms of vertices, V, and edges, E
+	- Space Usage: O(V+E)
+	- Count nodes, node degree: O(1)
+	- Count edges: O(V)
+	- Iteration through neighbors of a node: O(degree(node))
+	- Find if two nodes are adjacent: O(degree(node1)) or O(1) if a set is just for the internal lists
+	- Initialize from edge list and node count, validate adjacency list(no self-loops, no parallel edges, no missing directions): O(V+E)
+- Depth-First Search (DFS): a graph traversal algorithm
+	- similar to a tree DFS, but we need to account for cycles using a visited node set
+	- Good at solving connectivity questions
+	- Graph DFS Recipe:
+	def graph_DFS(graph, start):
+		visited = {start}
+		def visit(node):
+			# do something with node
+			for nbr in graph[node]:
+				if nbr not in visited:
+					visited.add(nbr)
+					visit(nbr)
+		visit(start)
+	- Connected-Component Loop Recipe
+		def connected_component_loop(graph):
+			visited = set() # shared across all CC
+			for node in graph:
+				if not visited yet:
+					# Found new connected component
+					# Visit all nodes in CC
+					visited.add(node)
+					visit(node)
+	- Runtime: O(V+E)
+	- Space: O(V+E), O(V) for visited, O(V+E) for the adjacency list
+- Reusable Idea: Path Reconstruction
+	- In DFS when we mark a node as visited, we can also track a predecessor in the DFS. The mapping of each node to its predecessor defines a DFS visit tree rooted at the starting node
+		- See 36.2 for an Example
+	- In BFS this finds the shortest path
+- Reusabe Idea: Computing Averages
+	- When computing averages it is often easier to focus on computing the numerator and denominator separately and then dividing at the very end
+- Breadth-First Search (BFS): a graph traversal algorithm
+	- Used to solve both connectivity and distance problems
+	- Computes the distance from the starting node to every other node
+	- Again, like DFS on graphs, we need to avoid cycles with a visited set
+		- We also need to prevent adding duplicates to the pending queue to avoid O(V^2) space
+	- Recipe:
+		def graph_BFS(graph, start):
+			Q = queue()
+			Q.push(start)
+			distances = {start: 0}
+			while not Q.empty():
+				node = Q.pop()
+				for nbr in graph[node]:
+					if nbr not in distances:
+						distance[nbr] = distance[node]+1
+						Q.push(nbr)
+			# DO something with distances
