@@ -353,3 +353,82 @@ Big O Analysis (Adjacency List): graphs are analyzed in terms of vertices, V, an
 						distance[nbr] = distance[node]+1
 						Q.push(nbr)
 			# DO something with distances
+	- Runtime: O(V + E)
+	- Space: O(V)
+	- Common mistakes:
+		- Using a dynamic array for the queue: this increases BFS runtime from O(V+E) to O(V^2+E)
+		- Enqueuing unvisited nodes more than once: this increases space complexity from O(V) to O(E)
+		- Using BFS to find shorted paths in a weighted graph: this does not work and it is not possible to find shortest paths in O(V+E) time in weighted graphs
+	- Multi-source BFS: BFS variation that accepts multiple starting nodes and finds the minimum distance to all nodes to any starting node
+		- Recipe:
+			def multisource_BFS(graph, sources):
+				Q = queue()
+				distances = {}
+				for source in sources:
+					Q.add(source)
+					distances[source] = 0
+				while not Q.empty():
+					node = Q.pop()
+					for nbr in graph[node]:
+						if nbr not in distances:
+							Q.add(nbr)
+							distances[nnbr] = distances[node]+1
+				# Do something with distances
+		- Runtime: O(V+E)
+- Grid Graphs: interpreting a grid as graph where up, down, left, right are neighbors. Dimensions are RxC with a maximum degree of 4
+	- Grid DFS Recipe:
+		def grid_DFS(grid, start_r, start_c):
+			# helper that returns if grid[r][c] is in bounds, not visited, and "walkable"
+			def is_valid(r, c):
+				...
+			directions = [(-1,0),(1,0),(0,-1),(0,1)]
+			visited = {{r,c}}
+			def visit(r, c):
+				# do something with r,c
+				for dir_r, dir_c in directions:
+					nbr_r = r + dir_r
+					nbr_c = c + dir_c
+					if is_valid(nbr_r, nbr_c):
+						visited.add((nbr_r, nbr_c))
+						visit(nbr_r, nbr_c)
+			visit(start_c, start_c)
+	- Grid BFS Recipe:
+		def grid_BFS(grid, start_r, start_c):
+			# helper that returns if grid[r][c] is in bounds, not visited, and "walkable"
+			def is_valid(r, c):
+				...
+			Q = queue()
+			Q.push((start_r, start_c))
+			distances = {(start_r, start_c): 0}
+			while not Q.empty():
+				r, c = Q.pop()
+				for dir_r, dir_c in directions:
+					nbr_r = r + dir_r
+					nbr_c = c + dir_c
+					if is_valid(nbr_r, nbr_c):
+						distances[(nbr_r, nbr_c)] = distancees[node]+1
+						Q.add((nbr_r, nbr_c))
+			# Do something with distances
+- Graph Modeling: taking input that is not a graph and turning it into to one so that we can use graph algorithms
+	- Steps:
+		1. Figure out how to model the problem as a connectivity or distance problem
+		2. Build a graph (usually and adjacency list) from the given input
+		3. Implement a graph algorithm (usually a BFS or DFS)
+- Key Takeaways:
+	- When to use BFS vs DFS:
+		- Distance problems require BFS
+		- Connectivity: both are valid in same runtime and space complexity
+		- Very large graphs may reach a recursion limt so use BFS
+		- If you need to / want to return early more easily use BFS 
+	- Graph algorithms to know (in order of most important) (see chart on pg487)
+		- DFS/BFS
+		- Topological Sort
+		- Djikstra's Algorithm
+		- Bellman-Ford Algorithm
+		- One minimum spanning tree algorithm (Prim's Algorithm)
+	- Graph Triggers:
+		- input is an edge list or a grid
+		- topic relates to connectivity, reachability, distance
+		- problems involving pairwise relationships between input elements
+		- geometric problems
+	- Keywords: path, source, destination, goal, steps, travel, maze, points
